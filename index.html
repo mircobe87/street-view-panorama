@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Panorami</title>
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+	</head>
+	<body>
+		<input id="lat"></input>
+		<input id="lng"></input>
+		<button id="btn">OK</button>
+		<p>panoid: <code><span id="panoid"></span></code></p>
+		<script type="text/javascript">
+			var btn = document.getElementById('btn');
+			var sv = new google.maps.StreetViewService();
+			var span = document.getElementById('panoid');
+
+
+			btn.addEventListener('click', function(e){
+				var latStr = document.getElementById('lat').value;
+				var lngStr = document.getElementById('lng').value;
+				var latLng = {
+					lat: parseFloat(latStr),
+					lng: parseFloat(lngStr)
+				};
+				console.log(lat);
+				console.log(lng);
+				console.log(latLng);
+				sv.getPanoramaByLocation(latLng, 50, function(data,status){
+					if (status == google.maps.StreetViewStatus.OK){
+						span.innerHTML = data.location.pano;
+					}else{
+						alert('Nessun panorama trovato in '+latStr+' '+lngStr);
+					}
+				});
+			});
+		</script>
+	</body>
+<html>
