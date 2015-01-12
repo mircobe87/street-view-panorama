@@ -1,7 +1,14 @@
 #!/bin/bash
 
+function closeHTTPServer() {
+	pkill -f "python -m SimpleHTTPServer"
+	exit 0
+}
+
 python -m SimpleHTTPServer &> /dev/null &
-xdg-open "http://localhost:8000"
+xdg-open "http://localhost:8000" &> /dev/null
+
+trap "closeHTTPServer" 2
 
 echo "Inderisci l'ID del panorama:"
 read panoid
@@ -27,6 +34,6 @@ cp pano.jpg ../
 cd ..
 
 xdg-open pano.jpg
-pkill -f "python -m SimpleHTTPServer"
+closeHTTPServer
 
 exit 0
