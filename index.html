@@ -59,6 +59,19 @@
 			var sv = new google.maps.StreetViewService();
 			var span = document.getElementById('panoid');
 
+			var inputs = document.getElementsByTagName('input');
+			var parseAttempt = 0;
+
+			inputs[0].addEventListener('blur', function(e){
+				var v = this.value;
+				if (v.search(',') >= 0 && parseAttempt == 0){
+					parseAttempt++;
+					var ll = v.split(',');
+					this.value = ll[0];
+					inputs[1].value = ll[1];
+				}
+
+			});
 
 			btn.addEventListener('click', function(e){
 				var latStr = document.getElementById('lat').value;
