@@ -10,10 +10,9 @@ xdg-open "http://localhost:8000" &> /dev/null
 
 trap "closeHTTPServer" 2
 
-echo "Inderisci l'ID del panorama:"
+echo "Inderisci l'ID del panorama..."
+echo -n "panoid: "
 read panoid
-
-#panoid="$1"
 
 mkdir panorama
 cd panorama

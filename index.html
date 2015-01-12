@@ -27,6 +27,14 @@
 			caption {
 				margin: 8px;
 			}
+			input {
+				text-align: right;
+			}
+			#panoid {
+				border: transparent;
+				font-family: monospace;
+				text-align: center;
+			}
 		</style>
 	</head>
 	<body>
@@ -43,7 +51,7 @@
 			</tr>
 			<tr>
 				<th>panoid</th>
-				<td colspan="2"><code><span id="panoid"></span></code></td>
+				<td colspan="2"><code><input id="panoid" maxlength="32" size="32" readonly></input></code></td>
 		</table>
 		
 		<script type="text/javascript">
@@ -64,7 +72,8 @@
 				console.log(latLng);
 				sv.getPanoramaByLocation(latLng, 50, function(data,status){
 					if (status == google.maps.StreetViewStatus.OK){
-						span.innerHTML = data.location.pano;
+						span.value = data.location.pano;
+						span.select();
 					}else{
 						alert('Nessun panorama trovato in '+latStr+' '+lngStr);
 					}
