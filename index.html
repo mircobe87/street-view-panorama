@@ -3,12 +3,49 @@
 	<head>
 		<title>Panorami</title>
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+		<style type="text/css">
+			html, body {
+				background-color: rgb(230,230,230);
+			}
+			th {
+				text-align: left;
+			}
+			button {
+				display: block;
+			}
+			table {
+				margin-left: auto;
+				margin-right: auto;
+				margin-top: 16px;
+				width: 350px;
+				border: solid 1px #a0a0a0;
+				border-radius: 3px;
+				box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.5);
+				background-color: white;
+				padding: 8px;
+			}
+			caption {
+				margin: 8px;
+			}
+		</style>
 	</head>
 	<body>
-		<input id="lat"></input>
-		<input id="lng"></input>
-		<button id="btn">OK</button>
-		<p>panoid: <code><span id="panoid"></span></code></p>
+		<table>
+			<caption>Ottiene il <i>panoid</i> a partire dalle coordinate.</caption>
+			<tr>
+				<th>Latitudine</th>
+				<td><input id="lat" tabindex="1"></td>
+				<td rowspan="2"><button id="btn" tabindex="3">PanoID...</button></td>
+			</tr>
+			<tr>
+				<th>Longitudine</th>
+				<td><input id="lng" tabindex="2"></td>
+			</tr>
+			<tr>
+				<th>panoid</th>
+				<td colspan="2"><code><span id="panoid"></span></code></td>
+		</table>
+		
 		<script type="text/javascript">
 			var btn = document.getElementById('btn');
 			var sv = new google.maps.StreetViewService();
